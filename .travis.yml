@@ -1,0 +1,9 @@
+sudo: false
+
+language: minimal
+
+deploy:
+    provider: script
+    script: bash scripts/deploy.sh unstable
+    on:
+        branch: master
