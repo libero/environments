@@ -9,6 +9,7 @@ fi
 remote="$1"
 folder=$(basename "$remote")
 
+cd remotes
 rm -rf "$folder"
 git clone --depth=1 "$remote" "$folder"
 cd "$folder"
