@@ -13,3 +13,9 @@ An automated deployment process for several Libero standard projects, targeting 
 By default, `deploy.sh` will use `latest-revision.sh` to find out the most recent revision of each project to deploy.
 
 Eventually `deploy.sh` can accept new revisions of some projects passed as an argument, for example by [customizing its Travis CI build](https://docs.travis-ci.com/user/triggering-builds/#customizing-the-build-configuration).
+
+### Remote script
+
+The suggestion for the remote script is to checkout a repository like `sample-configuration` (not existing yet), and execute `docker-compose` with customized environment variables.
+
+Some of the variables, like secrets, can be put in place by `infrastructure`. The variables such as the project's revisions should be passed in from here instead.
