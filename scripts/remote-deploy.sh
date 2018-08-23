@@ -1,4 +1,5 @@
 #!/bin/bash
+# shipped to a remote virtual machine to deploy sample-configuration there
 set -e
 
 cd /tmp

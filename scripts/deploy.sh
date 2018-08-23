@@ -1,4 +1,5 @@
 #!/bin/bash
+# deploys to a remote VM
 set -e
 
 if [ "$#" -ne 1 ]; then

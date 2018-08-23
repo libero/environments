@@ -1,4 +1,6 @@
 #!/bin/bash
+# finds out the commit sha of the latest revision of a repository,
+# with minimal cloning
 set -e
 
 if [ "$#" -ne 1 ]; then
