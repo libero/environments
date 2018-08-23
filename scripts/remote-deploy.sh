@@ -14,8 +14,8 @@ if [ ! -f .env ]; then
     cp .env.dist .env
 fi
 
-if [ -n "$revision_browser" ]; then
-    sed -i -e "s/^REVISION_BROWSER=.*$/REVISION_BROWSER=$revision_browser" .env
+if [ -n "$REVISION_BROWSER" ]; then
+    sed -i -e "s/^REVISION_BROWSER=.*$/REVISION_BROWSER=$REVISION_BROWSER/g" .env
 fi
 
 docker-compose up --force-recreate -d
