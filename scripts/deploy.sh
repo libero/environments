@@ -9,5 +9,5 @@ fi
 
 environment_name="$1"
 hostname="${environment_name}.libero.pub"
-scp scripts/deploy.sh "$hostname":/tmp/remote-deploy.sh
+scp scripts/remote-deploy.sh "$hostname":/tmp/remote-deploy.sh
 ssh "$hostname" REVISION_BROWSER="$(scripts/latest-revision.sh git@github.com:libero/browser)" /tmp/remote-deploy.sh
