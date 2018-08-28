@@ -1,0 +1,12 @@
+sudo: false
+
+language: minimal
+
+script:
+    - shellcheck scripts/*.sh
+
+deploy:
+    provider: script
+    script: bash scripts/deploy.sh unstable
+    on:
+        branch: master
