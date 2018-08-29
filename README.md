@@ -24,4 +24,6 @@ Every new deployment modifies one or more of the projects revisions, and restart
 
 ### Keys
 
-`keys/` contain [encrypted](https://docs.travis-ci.com/user/encrypting-files/) SSH private keys to access the servers to deploy on. Travis CI is able to decrypt these keys through secure environment variables.
+`keys/` contains SSH private keys to access the servers to deploy on. These keys are encrypted transparently using `git-crypt` so they should show in plain text after `git crypt unlock`.
+
+Travis CI can access these keys because it has been added as one of the `git-crypt` users. Its `git-crypt` key is stored safely via [`travis encrypt`](https://docs.travis-ci.com/user/encrypting-files/). All new `keys/` items can be added transparently, Travis CI will be able to access them.
