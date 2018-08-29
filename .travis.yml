@@ -3,7 +3,7 @@ sudo: false
 language: minimal
 
 before_install:
-    - openssl aes-256-cbc -K $encrypted_a389905ea254_key -iv $encrypted_a389905ea254_iv -in single-node--unstable.key.enc -out keys/single-node--unstable.key -d
+    - openssl aes-256-cbc -K $encrypted_a389905ea254_key -iv $encrypted_a389905ea254_iv -in keys/single-node--unstable.key.enc -out keys/single-node--unstable.key -d
 
 script:
     - shellcheck scripts/*.sh
