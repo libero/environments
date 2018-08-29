@@ -21,3 +21,7 @@ The `remote-deploy.sh` script is checks out a repository like `sample-configurat
 Some of the variables, like secrets, can be put in place by `infrastructure`. The variables such as the projects revisions should be passed in from here instead.
 
 Every new deployment modifies one or more of the projects revisions, and restart the services in `docker-compose`.
+
+### Keys
+
+`keys/` contain [encrypted](https://docs.travis-ci.com/user/encrypting-files/) SSH private keys to access the servers to deploy on. Travis CI is able to decrypt these keys through secure environment variables.
