@@ -1,3 +1,4 @@
+# TODO: only necessary for git-crypt, can we avoid it?
 sudo: required
 dist: trusty
 
@@ -14,7 +15,6 @@ before_install:
     - echo "128817a63de17a5af03fe69241e453436c6c286c86dd37fb70ed9b3bf7171d7d  git-crypt" | shasum -a 256 -c -
     - chmod +x git-crypt
     - sudo cp git-crypt /usr/local/bin/
-    - git crypt status
     - git crypt unlock
 
 script:
