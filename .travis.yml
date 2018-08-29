@@ -10,6 +10,7 @@ script:
 
 deploy:
     provider: script
-    script: bash scripts/deploy.sh unstable
+    script: bash scripts/deploy.sh ec2-user@34.239.171.22 keys/single-node--unstable.key
+
     on:
         branch: master

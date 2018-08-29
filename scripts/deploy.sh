@@ -3,12 +3,14 @@
 set -e
 
 if [ "$#" -ne 1 ]; then
-    echo "Usage: $0 ENVIRONMENT_NAME"
+    echo "Usage: $0 SSH_HOSTNAME [SSH_KEY_FILE]"
+    echo "Example: $0 user@something.libero.pub ~/.ssh/id_rsa"
     exit 1
 fi
 
-environment_name="$1"
-hostname="${environment_name}.libero.pub"
-scp scripts/remote-deploy.sh "$hostname":/tmp/remote-deploy.sh
+ssh_hostname="$1"
+public_port=80
+
+scp -i "$key" scripts/remote-deploy.sh "$ssh_hostname":/tmp/remote-deploy.sh
 revision_browser=$(scripts/latest-revision.sh git@github.com:libero/browser)
-ssh "$hostname" REVISION_BROWSER="$revision_browser" /tmp/remote-deploy.sh
+ssh -i "$key" "$ssh_hostname" PUBLIC_PORT=${public_port} REVISION_BROWSER="$revision_browser" /tmp/remote-deploy.sh
