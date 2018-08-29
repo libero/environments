@@ -3,12 +3,13 @@
 set -e
 
 if [ "$#" -ne 1 ]; then
-    echo "Usage: $0 SSH_HOSTNAME [SSH_KEY_FILE]"
+    echo "Usage: $0 SSH_HOSTNAME SSH_KEY_FILE"
     echo "Example: $0 user@something.libero.pub ~/.ssh/id_rsa"
     exit 1
 fi
 
 ssh_hostname="$1"
+key="$2"
 public_port=80
 
 scp -i "$key" scripts/remote-deploy.sh "$ssh_hostname":/tmp/remote-deploy.sh
