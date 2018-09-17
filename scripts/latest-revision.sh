@@ -1,7 +1,7 @@
 #!/bin/bash
 # finds out the commit sha of the latest revision of a repository,
 # with minimal cloning
-set -ex
+set -e
 
 if [ "$#" -ne 1 ]; then
     echo "USAGE $0 GIT_REMOTE_REPOSITORY"
