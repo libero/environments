@@ -24,7 +24,7 @@ script:
 
 deploy:
     provider: script
-    script: bash scripts/deploy.sh ec2-user@34.238.193.238 keys/single-node--unstable.key
+    script: bash scripts/deploy.sh ubuntu@34.238.193.238 keys/single-node--unstable.key
 
     on:
         branch: master
