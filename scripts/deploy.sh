@@ -13,5 +13,5 @@ key="$2"
 public_port=80
 
 scp -o StrictHostKeyChecking=no -i "$key" scripts/remote-deploy.sh "$ssh_hostname":/tmp/remote-deploy.sh
-revision_browser=$(scripts/latest-revision.sh https://github.com/libero/browser)
+revision_browser=$(scripts/latest-revision.sh https://github.com/libero/browser.git)
 ssh -o StrictHostKeyChecking=no -i "$key" "$ssh_hostname" PUBLIC_PORT=${public_port} REVISION_BROWSER="$revision_browser" /tmp/remote-deploy.sh
