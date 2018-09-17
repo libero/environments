@@ -13,6 +13,6 @@ folder=$(basename "$remote")
 
 cd remotes
 rm -rf "./$folder"
-git clone --depth=1 "$remote" "$folder"
+git clone -v --depth=1 "$remote" "$folder"
 cd "$folder"
 git rev-parse master
