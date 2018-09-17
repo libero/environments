@@ -1,6 +1,6 @@
 #!/bin/bash
 # shipped to a remote virtual machine to deploy sample-configuration there
-set -e
+set -ex
 
 cd /tmp
 if [ ! -d sample-configuration ]; then

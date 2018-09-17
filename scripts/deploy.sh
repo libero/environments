@@ -1,6 +1,6 @@
 #!/bin/bash
 # deploys to a remote VM
-set -e
+set -ex
 
 if [ "$#" -ne 2 ]; then
     echo "Usage: $0 SSH_HOSTNAME SSH_KEY_FILE"
