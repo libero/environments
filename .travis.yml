@@ -16,6 +16,7 @@ before_install:
     - chmod +x git-crypt
     - sudo mv git-crypt /usr/local/bin/
     - git crypt unlock
+    - chmod 600 keys/*.key
 
 script:
     - shellcheck scripts/*.sh
