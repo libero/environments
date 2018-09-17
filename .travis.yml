@@ -16,8 +16,8 @@ before_install:
     - chmod +x git-crypt
     - sudo mv git-crypt /usr/local/bin/
     - git crypt unlock
+    - bash -c '[ "$(head -n 1 keys/single-node--unstable.key)" == "-----BEGIN RSA PRIVATE KEY-----" ]'
     - chmod 600 keys/*.key
-    - [ "$(head -n 1 keys/single-node--unstable.key)" == "-----BEGIN RSA PRIVATE KEY-----" ]
 
 script:
     - shellcheck scripts/*.sh
