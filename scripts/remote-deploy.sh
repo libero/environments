@@ -23,4 +23,8 @@ if [ -n "$REVISION_BROWSER" ]; then
     sed -i -e "s/^REVISION_BROWSER=.*$/REVISION_BROWSER=$REVISION_BROWSER/g" .env
 fi
 
+if [ -n "$REVISION_DUMMY_API" ]; then
+    sed -i -e "s/^REVISION_DUMMY_API=.*$/REVISION_DUMMY_API=$REVISION_DUMMY_API/g" .env
+fi
+
 docker-compose up --force-recreate -d
