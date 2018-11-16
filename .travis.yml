@@ -28,3 +28,7 @@ deploy:
 
     on:
         branch: master
+
+if: |
+    (branch = master OR type = pull_request) AND \
+    fork = false
