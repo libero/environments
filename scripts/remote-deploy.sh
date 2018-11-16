@@ -28,4 +28,4 @@ if [ -n "$REVISION_DUMMY_API" ]; then
 fi
 
 docker-compose up --force-recreate -d
-.travis/smoke
+.travis/smoke-test.sh
