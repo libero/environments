@@ -9,7 +9,7 @@ if [ ! -d sample-configuration ]; then
 else
     cd sample-configuration
     git pull origin master
-    git submodule update
+    git submodule update -i
 fi
 
 if [ ! -f .env ]; then
@@ -32,4 +32,4 @@ fi
 # assume all service are stateless
 docker-compose down -v
 docker-compose up --force-recreate -d
-.travis/smoke-test.sh
+COMPOSE_PROJECT_NAME=sample-configuration .travis/smoke-test.sh
