@@ -34,4 +34,4 @@ docker-compose down -v
 docker-compose up --force-recreate -d
 
 # compare PUBLIC_PORT in .env, if provided
-HTTP_PORT=80 .travis/smoke-test.sh
+COMPOSE_PROJECT_NAME=sample-configuration HTTP_PORT=80 .travis/smoke-test.sh
