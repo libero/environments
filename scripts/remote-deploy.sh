@@ -32,4 +32,6 @@ fi
 # assume all service are stateless
 docker-compose down -v
 docker-compose up --force-recreate -d
-.travis/smoke-test.sh
+
+# compare PUBLIC_PORT in .env, if provided
+HTTP_PORT=80 .travis/smoke-test.sh
