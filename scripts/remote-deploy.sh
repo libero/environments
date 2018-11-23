@@ -4,11 +4,12 @@ set -ex
 
 cd /tmp
 if [ ! -d sample-configuration ]; then
-    git clone https://github.com/libero/sample-configuration
+    git clone https://github.com/libero/sample-configuration --recurse-submodules
     cd sample-configuration
 else
     cd sample-configuration
     git pull origin master
+    git submodule update
 fi
 
 if [ ! -f .env ]; then
