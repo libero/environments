@@ -9,7 +9,7 @@ if [ ! -d sample-configuration ]; then
 else
     cd sample-configuration
     git pull origin master
-    git submodule update -i
+    git submodule update --init
 fi
 
 if [ ! -f .env ]; then
