@@ -27,5 +27,8 @@ if [ -n "$REVISION_DUMMY_API" ]; then
     sed -i -e "s/^REVISION_DUMMY_API=.*$/REVISION_DUMMY_API=$REVISION_DUMMY_API/g" .env
 fi
 
+# avoid nginx+fpm shared volumes persisting files from older releases
+# assume all service are stateless
+docker-compose down -v
 docker-compose up --force-recreate -d
 .travis/smoke-test.sh
