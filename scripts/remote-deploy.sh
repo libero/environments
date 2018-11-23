@@ -9,7 +9,7 @@ if [ ! -d sample-configuration ]; then
 else
     cd sample-configuration
     git pull origin master
-    git submodule update
+    git submodule update --init
 fi
 
 if [ ! -f .env ]; then
@@ -32,6 +32,4 @@ fi
 # assume all service are stateless
 docker-compose down -v
 docker-compose up --force-recreate -d
-
-# compare PUBLIC_PORT in .env, if provided
 COMPOSE_PROJECT_NAME=sample-configuration HTTP_PORT=80 .travis/smoke-test.sh
