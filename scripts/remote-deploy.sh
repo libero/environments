@@ -28,6 +28,10 @@ if [ -n "$REVISION_DUMMY_API" ]; then
     sed -i -e "s/^REVISION_DUMMY_API=.*$/REVISION_DUMMY_API=$REVISION_DUMMY_API/g" .env
 fi
 
+if [ -n "$REVISION_PATTERN_LIBRARY" ]; then
+    sed -i -e "s/^REVISION_PATTERN_LIBRARY=.*$/REVISION_PATTERN_LIBRARY=$REVISION_PATTERN_LIBRARY/g" .env
+fi
+
 # avoid nginx+fpm shared volumes persisting files from older releases
 # assume all service are stateless
 docker-compose down -v
