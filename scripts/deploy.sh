@@ -21,7 +21,8 @@ declare environment
 for application in "${applications[@]}"
 do
     revision=$(scripts/latest-revision.sh "https://github.com/libero/${application}.git")
-    environment_variable_name="REVISION_$(echo $application | tr a-z A-Z | tr - _)"
+    # shellcheck disable=SC2018 disable=SC2019
+    environment_variable_name="REVISION_$(echo "$application" | tr a-z A-Z | tr - _)"
     environment="${environment} $environment_variable_name=${revision}"
 done
 
