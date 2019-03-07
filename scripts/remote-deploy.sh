@@ -24,6 +24,7 @@ declare -A revisions=()
 revisions[BROWSER]="$REVISION_BROWSER"
 revisions[DUMMY_API]="$REVISION_DUMMY_API"
 revisions[PATTERN_LIBRARY]="$REVISION_PATTERN_LIBRARY"
+revisions[CONTENT_STORE]="$REVISION_CONTENT_STORE"
 for application in "${!revisions[@]}"
 do
     if [ -n "${revisions[$application]}" ]; then
