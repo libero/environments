@@ -25,4 +25,4 @@ do
     environment="${environment} $environment_variable_name=${revision}"
 done
 
-ssh -o StrictHostKeyChecking=no -i "$key" "$ssh_hostname" PUBLIC_PORT=${public_port} $environment /tmp/remote-deploy.sh
+ssh -o StrictHostKeyChecking=no -i "$key" "$ssh_hostname" PUBLIC_PORT=${public_port} "$environment" /tmp/remote-deploy.sh
