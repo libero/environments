@@ -20,17 +20,16 @@ if [ -n "$PUBLIC_PORT" ]; then
     sed -i -e "s/^PUBLIC_PORT=.*$/PUBLIC_PORT=$PUBLIC_PORT/g" .env
 fi
 
-if [ -n "$REVISION_BROWSER" ]; then
-    sed -i -e "s/^REVISION_BROWSER=.*$/REVISION_BROWSER=$REVISION_BROWSER/g" .env
-fi
-
-if [ -n "$REVISION_DUMMY_API" ]; then
-    sed -i -e "s/^REVISION_DUMMY_API=.*$/REVISION_DUMMY_API=$REVISION_DUMMY_API/g" .env
-fi
-
-if [ -n "$REVISION_PATTERN_LIBRARY" ]; then
-    sed -i -e "s/^REVISION_PATTERN_LIBRARY=.*$/REVISION_PATTERN_LIBRARY=$REVISION_PATTERN_LIBRARY/g" .env
-fi
+declare -A revisions=()
+revisions[BROWSER]="$REVISION_BROWSER"
+revisions[DUMMY_API]="$REVISION_DUMMY_API"
+revisions[PATTERN_LIBRARY]="$REVISION_PATTERN_LIBRARY"
+for application in "${!revisions[@]}"
+do
+    if [ -n "${revisions[$application]}" ]; then
+        sed -i -e "s/^REVISION_${application}=.*$/REVISION_${application}=${revisions[$application]}/g" .env
+    fi
+done
 
 # avoid nginx+fpm shared volumes persisting files from older releases
 # assume all service are stateless
