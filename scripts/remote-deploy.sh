@@ -21,10 +21,11 @@ if [ -n "$PUBLIC_PORT" ]; then
 fi
 
 declare -A revisions=()
+revisions[CONTENT_STORE]="$REVISION_CONTENT_STORE"
 revisions[BROWSER]="$REVISION_BROWSER"
 revisions[DUMMY_API]="$REVISION_DUMMY_API"
 revisions[PATTERN_LIBRARY]="$REVISION_PATTERN_LIBRARY"
-revisions[CONTENT_STORE]="$REVISION_CONTENT_STORE"
+revisions[SEARCH]="$REVISION_SEARCH"
 for application in "${!revisions[@]}"
 do
     if [ -n "${revisions[$application]}" ]; then
