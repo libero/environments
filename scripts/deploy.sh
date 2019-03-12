@@ -15,7 +15,7 @@ public_port=80
 scp -o StrictHostKeyChecking=no -i "$key" scripts/remote-deploy.sh "$ssh_hostname":/tmp/remote-deploy.sh
 
 # list of applications
-declare -a applications=(browser dummy-api pattern-library content-store)
+declare -a applications=(browser content-store dummy-api pattern-library search)
 # environment variables string
 declare environment
 for application in "${applications[@]}"
