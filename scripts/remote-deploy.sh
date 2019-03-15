@@ -2,7 +2,7 @@
 # shipped to a remote virtual machine to deploy sample-configuration there
 set -ex
 
-cd /tmp
+cd "$HOME"
 if [ ! -d sample-configuration ]; then
     git clone https://github.com/libero/sample-configuration --recurse-submodules
     cd sample-configuration
