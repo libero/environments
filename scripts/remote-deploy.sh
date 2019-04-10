@@ -38,3 +38,6 @@ done
 docker-compose down -v
 docker-compose up --force-recreate -d
 COMPOSE_PROJECT_NAME=sample-configuration HTTP_PORT=80 .travis/smoke-test.sh
+
+# Populate the search service
+curl --verbose --request POST http://localhost:8081/search/populate
