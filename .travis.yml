@@ -9,13 +9,7 @@ branches:
         - master
 
 before_install:
-    - openssl aes-256-cbc -K $encrypted_a389905ea254_key -iv $encrypted_a389905ea254_iv -in travis-ci.key.enc -out travis-ci.key -d
-    - gpg --import travis-ci.key
-    - curl -L https://github.com/minrk/git-crypt-bin/releases/download/0.6.0/git-crypt > git-crypt
-    - echo "128817a63de17a5af03fe69241e453436c6c286c86dd37fb70ed9b3bf7171d7d  git-crypt" | shasum -a 256 -c -
-    - chmod +x git-crypt
-    - sudo mv git-crypt /usr/local/bin/
-    - git crypt unlock
+    - TRAVIS_KEY=$encrypted_a389905ea254_key TRAVIS_IV=$encrypted_a389905ea254_iv .scripts/travis/git-crypt-unlock travis-ci.key.enc
     - bash -c '[ "$(head -n 1 keys/single-node--unstable.key)" == "-----BEGIN RSA PRIVATE KEY-----" ]'
     - chmod 600 keys/*.key
 
