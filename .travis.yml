@@ -9,7 +9,7 @@ branches:
         - master
 
 before_install:
-    - TRAVIS_KEY=$encrypted_a389905ea254_key TRAVIS_IV=$encrypted_a389905ea254_iv .scripts/travis/git-crypt-unlock travis-ci.key.enc
+    - TRAVIS_KEY=$encrypted_a389905ea254_key TRAVIS_IV=$encrypted_a389905ea254_iv .scripts/travis/git-crypt-unlock.sh travis-ci.key.enc
     - bash -c '[ "$(head -n 1 keys/single-node--unstable.key)" == "-----BEGIN RSA PRIVATE KEY-----" ]'
     - chmod 600 keys/*.key
 
