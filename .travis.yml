@@ -24,7 +24,7 @@ script:
 
 deploy:
     provider: script
-    script: bash scripts/deploy.sh ubuntu@unstable.libero.pub keys/single-node--unstable.key
+    script: bash scripts/deploy.sh unstable ubuntu@unstable.libero.pub keys/single-node--unstable.key
 
     on:
         branch: master
