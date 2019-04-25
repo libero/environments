@@ -2,17 +2,19 @@
 # deploys to a remote VM
 set -ex
 
-if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 SSH_HOSTNAME SSH_KEY_FILE"
-    echo "Example: $0 user@something.libero.pub ~/.ssh/id_rsa"
+if [ "$#" -ne 3 ]; then
+    echo "Usage: $0 ENVIRONMENT_NAME SSH_HOSTNAME SSH_KEY_FILE"
+    echo "Example: $0 production user@something.libero.pub ~/.ssh/id_rsa"
     exit 1
 fi
 
-ssh_hostname="$1"
-key="$2"
+environment_name="$1"
+ssh_hostname="$2"
+key="$3"
 public_port=80
 
 scp -o StrictHostKeyChecking=no -i "$key" scripts/remote-deploy.sh "$ssh_hostname":/tmp/remote-deploy.sh
+scp -o StrictHostKeyChecking=no -i "$key" -r "secrets/$environment_name/" "$ssh_hostname":secrets/
 
 # list of applications
 declare -a applications=(browser content-store dummy-api pattern-library search)
