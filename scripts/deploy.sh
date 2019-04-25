@@ -2,7 +2,7 @@
 # deploys to a remote VM
 set -ex
 
-if [ "$#" -ne 2 ]; then
+if [ "$#" -ne 3 ]; then
     echo "Usage: $0 ENVIRONMENT_NAME SSH_HOSTNAME SSH_KEY_FILE"
     echo "Example: $0 production user@something.libero.pub ~/.ssh/id_rsa"
     exit 1
