@@ -40,10 +40,13 @@ for secret in "$HOME"/secrets/*.secret; do
 done
 
 echo "Starting applications"
+# creates persistence-oriented volumes
+./initialize-volumes.sh
 # avoid nginx+fpm shared volumes persisting files from older releases
-# assume all service are stateless
 docker-compose down -v
+# (re)start containers
 docker-compose up --force-recreate -d
+# waits and executes smoke tests
 COMPOSE_PROJECT_NAME=sample-configuration HTTP_PORT=80 .travis/smoke-test.sh
 
 # Populate the search service
