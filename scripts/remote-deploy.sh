@@ -41,7 +41,7 @@ done
 
 echo "Starting applications"
 # creates persistence-oriented volumes
-./initialize-volumes.sh
+.docker/initialize-volumes.sh
 # avoid nginx+fpm shared volumes persisting files from older releases
 docker-compose down -v
 # (re)start containers
