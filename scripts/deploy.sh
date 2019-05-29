@@ -14,7 +14,7 @@ key="$3"
 public_port=80
 
 scp -o StrictHostKeyChecking=no -i "$key" scripts/remote-deploy.sh "$ssh_hostname":/tmp/remote-deploy.sh
-scp -o StrictHostKeyChecking=no -i "$key" -r "secrets/$environment_name/" "$ssh_hostname":secrets/
+scp -o StrictHostKeyChecking=no -i "$key" -r secrets/$environment_name/* "$ssh_hostname":secrets/
 
 # list of applications
 declare -a applications=(browser content-store dummy-api pattern-library search)
