@@ -43,9 +43,9 @@ echo "Starting applications"
 # creates persistence-oriented volumes
 .docker/initialize-volumes.sh
 # avoid nginx+fpm shared volumes persisting files from older releases
-docker-compose -f docker-compose.yml -f docker-compose.secrets.yml down --remove-orphans -v
+docker-compose -f docker-compose.yml -f docker-compose.secrets.yml down --remove-orphans --volumes
 # (re)start containers
-docker-compose -f docker-compose.yml -f docker-compose.secrets.yml up --force-recreate -d
+docker-compose -f docker-compose.yml -f docker-compose.secrets.yml up --force-recreate --detach
 # waits and executes smoke tests
 COMPOSE_PROJECT_NAME=sample-configuration HTTP_PORT=80 .travis/smoke-test.sh
 # populate the services
