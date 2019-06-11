@@ -43,7 +43,7 @@ echo "Starting applications"
 # creates persistence-oriented volumes
 .docker/initialize-volumes.sh
 # avoid nginx+fpm shared volumes persisting files from older releases
-docker-compose -f docker-compose.yml -f docker-compose.secrets.yml down -v
+docker-compose -f docker-compose.yml -f docker-compose.secrets.yml down --remove-orphans -v
 # (re)start containers
 docker-compose -f docker-compose.yml -f docker-compose.secrets.yml up --force-recreate -d
 # waits and executes smoke tests
