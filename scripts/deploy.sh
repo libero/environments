@@ -18,7 +18,7 @@ ssh -o StrictHostKeyChecking=no -i "$key" "$ssh_hostname" mkdir -p secrets/
 scp -o StrictHostKeyChecking=no -i "$key" -r secrets/"$environment_name"/* "$ssh_hostname":secrets/
 
 # list of applications
-declare -a applications=(browser content-store dummy-api pattern-library search)
+declare -a applications=(browser content-store dummy-api jats-ingester pattern-library search)
 # environment variables string
 declare environment
 for application in "${applications[@]}"
