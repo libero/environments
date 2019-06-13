@@ -14,6 +14,7 @@ key="$3"
 public_port=80
 
 scp -o StrictHostKeyChecking=no -i "$key" scripts/remote-deploy.sh "$ssh_hostname":/tmp/remote-deploy.sh
+ssh -o StrictHostKeyChecking=no -i "$key" "$ssh_hostname" mkdir -p secrets/
 scp -o StrictHostKeyChecking=no -i "$key" -r secrets/"$environment_name"/* "$ssh_hostname":secrets/
 
 # list of applications
