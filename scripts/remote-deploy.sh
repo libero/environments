@@ -25,6 +25,7 @@ declare -A revisions=()
 revisions[CONTENT_STORE]="$REVISION_CONTENT_STORE"
 revisions[BROWSER]="$REVISION_BROWSER"
 revisions[DUMMY_API]="$REVISION_DUMMY_API"
+revisions[JATS_INGESTER]="$REVISION_JATS_INGESTER"
 revisions[PATTERN_LIBRARY]="$REVISION_PATTERN_LIBRARY"
 revisions[SEARCH]="$REVISION_SEARCH"
 for application in "${!revisions[@]}"
