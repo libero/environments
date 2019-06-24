@@ -35,6 +35,11 @@ do
     fi
 done
 
+echo "Linking files"
+for file in "$HOME"/files/*; do
+    ln -sf "$file" files/
+done
+
 echo "Linking secrets"
 for secret in "$HOME"/secrets/*.secret; do
     ln -sf "$secret" secrets/
