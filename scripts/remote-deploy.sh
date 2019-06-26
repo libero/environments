@@ -16,8 +16,12 @@ if [ ! -f .env ]; then
     cp .env.dist .env
 fi
 
-if [ -n "$PUBLIC_PORT" ]; then
-    sed -i -e "s/^PUBLIC_PORT=.*$/PUBLIC_PORT=$PUBLIC_PORT/g" .env
+if [ -n "$PUBLIC_PORT_HTTP" ]; then
+    sed -i -e "s/^PUBLIC_PORT_HTTP=.*$/PUBLIC_PORT_HTTP=$PUBLIC_PORT_HTTP/g" .env
+fi
+
+if [ -n "$PUBLIC_PORT_HTTPS" ]; then
+    sed -i -e "s/^PUBLIC_PORT_HTTPS=.*$/PUBLIC_PORT_HTTPS=$PUBLIC_PORT_HTTPS/g" .env
 fi
 
 echo "Setting revisions of applications"
@@ -53,6 +57,7 @@ docker-compose -f docker-compose.yml -f docker-compose.secrets.yml down --remove
 # (re)start containers
 docker-compose -f docker-compose.yml -f docker-compose.secrets.yml up --force-recreate --detach
 # waits and executes smoke tests
-COMPOSE_PROJECT_NAME=sample-configuration HTTP_PORT=80 .travis/smoke-test.sh
+# HTTP_PORT to be removed after backward compatibility
+COMPOSE_PROJECT_NAME=sample-configuration HTTP_PORT=80 PUBLIC_PORT_HTTP="${PUBLIC_PORT_HTTP}" PUBLIC_PORT_HTTPS="${PUBLIC_PORT_HTTPS}" .travis/smoke-test.sh
 # populate the services
 .docker/populate-services.sh
