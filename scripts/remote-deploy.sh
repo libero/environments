@@ -21,7 +21,7 @@ if [ -n "$PUBLIC_PORT_HTTP" ]; then
 fi
 
 if [ -n "$PUBLIC_PORT_HTTPS" ]; then
-    sed -i -e "s/^PUBLIC_PORT_HTTPS=.*$/PUBLIC_PORT_HTTPS=$PUBLIC_PORT_HTTP/g" .env
+    sed -i -e "s/^PUBLIC_PORT_HTTPS=.*$/PUBLIC_PORT_HTTPS=$PUBLIC_PORT_HTTPS/g" .env
 fi
 
 echo "Setting revisions of applications"
