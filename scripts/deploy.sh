@@ -11,7 +11,8 @@ fi
 environment_name="$1"
 ssh_hostname="$2"
 key="$3"
-public_port=80
+public_port_http=80
+public_port_https=443
 
 scp -o StrictHostKeyChecking=no -i "$key" scripts/remote-deploy.sh "$ssh_hostname":/tmp/remote-deploy.sh
 ssh -o StrictHostKeyChecking=no -i "$key" "$ssh_hostname" mkdir -p files/
@@ -30,4 +31,4 @@ do
     environment="${environment} $environment_variable_name=${revision}"
 done
 
-ssh -o StrictHostKeyChecking=no -i "$key" "$ssh_hostname" PUBLIC_PORT=${public_port} "$environment" /tmp/remote-deploy.sh
+ssh -o StrictHostKeyChecking=no -i "$key" "$ssh_hostname" PUBLIC_PORT_HTTP="${public_port_http}" PUBLIC_PORT_HTTPS="${public_port_https}" "$environment" /tmp/remote-deploy.sh
