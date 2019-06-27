@@ -6,9 +6,13 @@ cd "$HOME"
 if [ ! -d sample-configuration ]; then
     git clone https://github.com/libero/sample-configuration --recurse-submodules
     cd sample-configuration
+    git checkout "${BRANCH_NAME}"
 else
     cd sample-configuration
+    git checkout master
     git pull origin master
+    git checkout "${BRANCH_NAME}"
+    git pull origin "${BRANCH_NAME}"
     git submodule update --init
 fi
 
