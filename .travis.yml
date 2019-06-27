@@ -7,6 +7,7 @@ language: minimal
 branches:
     only:
         - master
+        - /^latest\/.+$/
 
 before_install:
     - TRAVIS_KEY=$encrypted_a389905ea254_key TRAVIS_IV=$encrypted_a389905ea254_iv .scripts/travis/git-crypt-unlock.sh travis-ci.key.enc
