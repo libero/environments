@@ -6,14 +6,22 @@ cd "$HOME"
 if [ ! -d sample-configuration ]; then
     git clone https://github.com/libero/sample-configuration --recurse-submodules
     cd sample-configuration
+    git checkout "${BRANCH_NAME}"
 else
     cd sample-configuration
+    git checkout master
     git pull origin master
+    git checkout "${BRANCH_NAME}"
+    git pull origin "${BRANCH_NAME}"
     git submodule update --init
 fi
 
 if [ ! -f .env ]; then
     cp .env.dist .env
+fi
+
+if [ -n "$ENVIRONMENT_NAME" ]; then
+    sed -i -e "s/^ENVIRONMENT_NAME=.*$/ENVIRONMENT_NAME=$ENVIRONMENT_NAME/g" .env
 fi
 
 if [ -n "$PUBLIC_PORT_HTTP" ]; then
@@ -58,6 +66,6 @@ docker-compose -f docker-compose.yml -f docker-compose.secrets.yml down --remove
 docker-compose -f docker-compose.yml -f docker-compose.secrets.yml up --force-recreate --detach
 # waits and executes smoke tests
 # HTTP_PORT to be removed after backward compatibility
-COMPOSE_PROJECT_NAME=sample-configuration PUBLIC_PORT_HTTP="${PUBLIC_PORT_HTTP}" PUBLIC_PORT_HTTPS="${PUBLIC_PORT_HTTPS}" .travis/smoke-test.sh
+COMPOSE_PROJECT_NAME=sample-configuration ENVIRONMENT_NAME=${ENVIRONMENT_NAME} PUBLIC_PORT_HTTP="${PUBLIC_PORT_HTTP}" PUBLIC_PORT_HTTPS="${PUBLIC_PORT_HTTPS}" .travis/smoke-test.sh
 # populate the services
-COMPOSE_PROJECT_NAME=sample-configuration PUBLIC_PORT_HTTP="${PUBLIC_PORT_HTTP}" PUBLIC_PORT_HTTPS="${PUBLIC_PORT_HTTPS}" .docker/populate-services.sh
+COMPOSE_PROJECT_NAME=sample-configuration ENVIRONMENT_NAME=${ENVIRONMENT_NAME} PUBLIC_PORT_HTTP="${PUBLIC_PORT_HTTP}" PUBLIC_PORT_HTTPS="${PUBLIC_PORT_HTTPS}" .docker/populate-services.sh

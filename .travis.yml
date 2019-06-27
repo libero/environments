@@ -17,12 +17,15 @@ script:
     - shellcheck scripts/*.sh
 
 deploy:
-    provider: script
-    script: bash scripts/deploy.sh unstable ubuntu@unstable.libero.pub keys/single-node--unstable.key
-
-    on:
-        branch: master
+    - provider: script
+      script: bash scripts/deploy.sh unstable ubuntu@unstable.libero.pub keys/single-node--unstable.key
+      on:
+          branch: master
+    - provider: script
+      script: bash scripts/deploy.sh demo ubuntu@demo.libero.pub keys/single-node--demo.key
+      on:
+          tags: true
 
 if: |
-    (branch = master OR type = pull_request) AND \
+    (branch = master OR type = pull_request OR tag IS present) AND \
     fork = false
