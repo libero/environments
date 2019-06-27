@@ -62,6 +62,6 @@ docker-compose -f docker-compose.yml -f docker-compose.secrets.yml down --remove
 docker-compose -f docker-compose.yml -f docker-compose.secrets.yml up --force-recreate --detach
 # waits and executes smoke tests
 # HTTP_PORT to be removed after backward compatibility
-COMPOSE_PROJECT_NAME=sample-configuration PUBLIC_PORT_HTTP="${PUBLIC_PORT_HTTP}" PUBLIC_PORT_HTTPS="${PUBLIC_PORT_HTTPS}" .travis/smoke-test.sh
+COMPOSE_PROJECT_NAME=sample-configuration ENVIRONMENT_NAME=${ENVIRONMENT_NAME} PUBLIC_PORT_HTTP="${PUBLIC_PORT_HTTP}" PUBLIC_PORT_HTTPS="${PUBLIC_PORT_HTTPS}" .travis/smoke-test.sh
 # populate the services
-COMPOSE_PROJECT_NAME=sample-configuration PUBLIC_PORT_HTTP="${PUBLIC_PORT_HTTP}" PUBLIC_PORT_HTTPS="${PUBLIC_PORT_HTTPS}" .docker/populate-services.sh
+COMPOSE_PROJECT_NAME=sample-configuration ENVIRONMENT_NAME=${ENVIRONMENT_NAME} PUBLIC_PORT_HTTP="${PUBLIC_PORT_HTTP}" PUBLIC_PORT_HTTPS="${PUBLIC_PORT_HTTPS}" .docker/populate-services.sh
