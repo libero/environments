@@ -31,4 +31,4 @@ do
     environment="${environment} $environment_variable_name=${revision}"
 done
 
-ssh -o StrictHostKeyChecking=no -i "$key" "$ssh_hostname" PUBLIC_PORT_HTTP="${public_port_http}" PUBLIC_PORT_HTTPS="${public_port_https}" "$environment" /tmp/remote-deploy.sh
+ssh -o StrictHostKeyChecking=no -i "$key" "$ssh_hostname" ENVIRONMENT_NAME="${environment_name}" PUBLIC_PORT_HTTP="${public_port_http}" PUBLIC_PORT_HTTPS="${public_port_https}" "$environment" /tmp/remote-deploy.sh

@@ -16,6 +16,10 @@ if [ ! -f .env ]; then
     cp .env.dist .env
 fi
 
+if [ -n "$ENVIRONMENT_NAME" ]; then
+    sed -i -e "s/^ENVIRONMENT_NAME=.*$/ENVIRONMENT_NAME=$ENVIRONMENT_NAME/g" .env
+fi
+
 if [ -n "$PUBLIC_PORT_HTTP" ]; then
     sed -i -e "s/^PUBLIC_PORT_HTTP=.*$/PUBLIC_PORT_HTTP=$PUBLIC_PORT_HTTP/g" .env
 fi
