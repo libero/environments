@@ -2,6 +2,13 @@
 
 An automated deployment process for several Libero standard projects, targeting a single VM [infrastructure](https://github.com/libero/infrastructure) at first, instantiated in multiple environments.
 
+## Deployment
+
+To:
+
+- `unstable`: every `master` build of this repository deploys the newest versions of the projects.
+- `demo`: pushing a new `latest/*` tag (e.g. `latest/20190701`) deploys the newest versions of the projects.
+
 ## Architecture
 
 `deploy.sh` logs in into a target VM over SSH to run a deployment command that should be present there. The VM is expected to maintain state across deployments:
