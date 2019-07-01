@@ -32,14 +32,4 @@ do
     environment="${environment} $environment_variable_name=${revision}"
 done
 
-environment_variables_file="environments/${environment_name}.env"
-if [ ! -e "${environment_variables_file}" ]; then
-    echo "Missing configuration file: ${environment_variables_file}"
-    exit 2
-fi
-# shellcheck source=environments/unstable.env
-source "${environment_variables_file}"
-
-environment="${environment} POPULATE_CONTENT_STORES=${POPULATE_CONTENT_STORES}"
-
 ssh -o StrictHostKeyChecking=no -i "$key" "$ssh_hostname" ENVIRONMENT_NAME="${environment_name}" PUBLIC_PORT_HTTP="${public_port_http}" PUBLIC_PORT_HTTPS="${public_port_https}" "$environment" BRANCH_NAME="${branch_name}" /tmp/remote-deploy.sh
