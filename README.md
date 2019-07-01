@@ -7,7 +7,7 @@ An automated deployment process for several Libero standard projects, targeting 
 To:
 
 - `unstable`: every `master` build of this repository deploys the newest versions of the projects.
-- `demo`: pushing a new `latest/*` tag (e.g. `latest/20190701`) deploys the newest versions of the projects.
+- `demo`: pushing a new `latest/*` tag (e.g. `latest/20190701`) to the `libero/environments` Github repository deploys the newest versions of the projects.
 
 ## Architecture
 
