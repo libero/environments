@@ -15,7 +15,7 @@ before_install:
     - chmod 600 keys/*.key
 
 script:
-    - shellcheck scripts/*.sh
+    - shellcheck -x scripts/*.sh
 
 deploy:
     - provider: script
