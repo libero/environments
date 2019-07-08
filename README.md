@@ -36,3 +36,38 @@ Every new deployment modifies one or more of the projects revisions, and restart
 Travis CI can access these keys because it has been added as one of the `git-crypt` users. Its `git-crypt` key is stored safely via [`travis encrypt`](https://docs.travis-ci.com/user/encrypting-files/). All new `keys/` items can be added transparently, Travis CI will be able to access them.
 
 Refer to the [infrastructure repository documentation on secrets management](https://github.com/libero/infrastructure#secrets-management) for details on `git-crypt` usage.
+
+## Tasks
+
+### Clean an environment
+
+Log in into the server:
+
+```
+ssh -i keys/single-node--unstable.key ubuntu@unstable.libero.pub
+```
+
+Take down all the containers, since they would keep the volumes in use:
+
+```
+docker-compose -f docker-compose.yml -f docker-compose.secrets.yml down --volumes
+```
+
+Remove and recreate external volumes:
+
+```
+.docker/remove-volumes.sh
+.docker/initialize-volumes.sh
+```
+
+Start all the services again:
+
+```
+docker-compose -f docker-compose.yml -f docker-compose.secrets.yml up --force-recreate --detach
+```
+
+Run smoke tests:
+
+```
+PUBLIC_PORT_HTTP=80 PUBLIC_PORT_HTTPS=443 .travis/smoke-test.sh
+```
