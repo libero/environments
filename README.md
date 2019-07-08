@@ -50,7 +50,7 @@ ssh -i keys/single-node--unstable.key ubuntu@unstable.libero.pub
 Take down all the containers, since they would keep the volumes in use:
 
 ```
-docker-compose -f docker-compose.yml -f docker-compose.secrets.yml down -v
+docker-compose -f docker-compose.yml -f docker-compose.secrets.yml down --volumes
 ```
 
 Remove and recreate external volumes:
