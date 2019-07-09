@@ -20,17 +20,9 @@ if [ ! -f .env ]; then
     cp .env.dist .env
 fi
 
-if [ -n "$ENVIRONMENT_NAME" ]; then
-    sed -i -e "s/^ENVIRONMENT_NAME=.*$/ENVIRONMENT_NAME=$ENVIRONMENT_NAME/g" .env
-fi
-
-if [ -n "$PUBLIC_PORT_HTTP" ]; then
-    sed -i -e "s/^PUBLIC_PORT_HTTP=.*$/PUBLIC_PORT_HTTP=$PUBLIC_PORT_HTTP/g" .env
-fi
-
-if [ -n "$PUBLIC_PORT_HTTPS" ]; then
-    sed -i -e "s/^PUBLIC_PORT_HTTPS=.*$/PUBLIC_PORT_HTTPS=$PUBLIC_PORT_HTTPS/g" .env
-fi
+for environment_variable_name in BROWSER_GTM_ID ENVIRONMENT_NAME PUBLIC_PORT_HTTP PUBLIC_PORT_HTTPS; do
+    sed -i -e "s/^${environment_variable_name}=.*$/${environment_variable_name}=${!environment_variable_name}/g" .env
+done
 
 echo "Setting revisions of applications"
 declare -A revisions=()

@@ -40,8 +40,8 @@ fi
 # shellcheck source=environments/unstable.env
 source "${environment_variables_file}"
 
-for environment_variable_name in ENVIRONMENT_NAME PUBLIC_PORT_HTTP PUBLIC_PORT_HTTPS POPULATE_CONTENT_STORES; do
+for environment_variable_name in BROWSER_GTM_ID ENVIRONMENT_NAME PUBLIC_PORT_HTTP PUBLIC_PORT_HTTPS POPULATE_CONTENT_STORES; do
     environment="${environment} ${environment_variable_name}=${!environment_variable_name}"
 done
 
-ssh -o StrictHostKeyChecking=no -i "$key" "$ssh_hostname" ENVIRONMENT_NAME="${environment_name}" PUBLIC_PORT_HTTP="${public_port_http}" PUBLIC_PORT_HTTPS="${public_port_https}" "$environment" BRANCH_NAME="${branch_name}" /tmp/remote-deploy.sh
+ssh -o StrictHostKeyChecking=no -i "$key" "$ssh_hostname" "$environment" BRANCH_NAME="${branch_name}" /tmp/remote-deploy.sh
