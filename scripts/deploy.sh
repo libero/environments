@@ -14,6 +14,7 @@ key="$3"
 public_port_http=80
 public_port_https=443
 branch_name="${BRANCH_NAME:-master}"
+docker_libero_namespace="liberoadmin"
 
 scp -o StrictHostKeyChecking=no -i "$key" scripts/remote-deploy.sh "$ssh_hostname":/tmp/remote-deploy.sh
 ssh -o StrictHostKeyChecking=no -i "$key" "$ssh_hostname" mkdir -p files/
@@ -27,7 +28,7 @@ declare -a applications=(browser content-store dummy-api jats-ingester pattern-l
 declare environment
 for application in "${applications[@]}"
 do
-    revision=$(scripts/latest-revision.sh "https://github.com/libero/${application}.git")
+    revision=$(scripts/latest-revision.sh "${docker_libero_namespace}/${application}")
     environment_variable_name="REVISION_$(echo "$application" | tr '[:lower:]' '[:upper:]' | tr - _)"
     environment="${environment} $environment_variable_name=${revision}"
 done
