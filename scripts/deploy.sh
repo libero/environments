@@ -11,8 +11,6 @@ fi
 environment_name="$1"
 ssh_hostname="$2"
 key="$3"
-public_port_http=80
-public_port_https=443
 branch_name="${BRANCH_NAME:-master}"
 
 scp -o StrictHostKeyChecking=no -i "$key" scripts/remote-deploy.sh "$ssh_hostname":/tmp/remote-deploy.sh
