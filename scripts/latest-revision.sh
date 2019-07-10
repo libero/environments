@@ -13,4 +13,4 @@ image_name="$1"
 tag="${2:-latest}"
 
 docker pull "${image_name}:${tag}" 1>&2
-docker inspect liberoadmin/search:latest | jq -r '.[0].Config.Labels."org.opencontainers.image.revision"'
+docker inspect "${image_name}:${tag}" | jq -r '.[0].Config.Labels."org.opencontainers.image.revision"'
