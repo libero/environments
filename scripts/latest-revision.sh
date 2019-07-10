@@ -1,18 +1,16 @@
 #!/bin/bash
-# finds out the commit sha of the latest revision of a repository,
-# with minimal cloning
+# finds out the commit sha originating a latest Docker image,
+# by pulling it and reading labels
 set -e
 
 if [ "$#" -ne 1 ]; then
-    echo "USAGE $0 GIT_REMOTE_REPOSITORY"
+    echo "USAGE $0 DOCKER_IMAGE [TAG]"
+    echo "Example: $0 liberoadmin/browser latest"
     exit 1
 fi
 
-remote="$1"
-folder=$(basename "$remote")
+image_name="$1"
+tag="${2:-latest}"
 
-cd remotes
-rm -rf "./$folder"
-git clone -v --depth=1 "$remote" "$folder"
-cd "$folder"
-git rev-parse master
+docker pull "${image_name}:${tag}" 1>&2
+docker inspect "${image_name}:${tag}" | jq -r '.[0].Config.Labels."org.opencontainers.image.revision"'
